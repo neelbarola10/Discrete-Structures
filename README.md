@@ -1,218 +1,262 @@
-# Finite Automata and Its Applications in Real Life
+# Graph Theory and Its Applications in Computer Science
 
 ## Introduction
 
-In computer science, many problems require a system to process information step by step and make decisions based on the input it receives. **Finite Automata** is one of the fundamental concepts of Automata Theory that helps us understand and design such systems. It provides a mathematical model for representing systems that have a limited number of states and change from one state to another according to specific inputs.
+Graph Theory is an important topic in **Discrete Structures** and is widely used in computer science to represent relationships and connections between different objects. A graph provides a simple way to model real-world systems such as computer networks, road maps, social media connections, and communication systems.
 
-Finite Automata is closely related to **Discrete Structures, Compiler Design, Formal Languages, and Computer Science**. Although the concept is mathematical, it has many practical applications in software development and everyday technology.
+A graph consists of a collection of **vertices** and **edges**. Vertices represent objects or entities, while edges represent the relationships or connections between them. Because of this simple structure, graphs can be used to represent and solve many complex problems efficiently.
+
+Graph Theory is an important concept in computer science because many systems involve relationships between different objects. Understanding graphs helps programmers and computer scientists analyze these relationships and develop efficient solutions.
 
 ---
 
-## What is Finite Automata?
+## What is a Graph?
 
-A **Finite Automaton (FA)** is a mathematical model of computation that consists of a finite number of states. It reads an input string one symbol at a time and changes its state according to predefined rules.
-
-A finite automaton generally contains five components:
-
-- **Q** – A finite set of states
-- **Σ** – A finite set of input symbols called the alphabet
-- **δ** – Transition function that determines the next state
-- **q₀** – Initial state
-- **F** – Set of final or accepting states
+A graph is a mathematical structure consisting of a set of vertices and a set of edges connecting those vertices.
 
 It can be represented as:
 
 ```text
-FA = (Q, Σ, δ, q₀, F)
+G = (V, E)
 ```
 
-For example, consider a simple system that checks whether a binary number contains an even number of `1`s.
+Where:
 
-```text
-              1
-        ┌─────────────┐
-        ↓             │
-     (q0) ──1──> (q1)
-       ↑             │
-       └──────1──────┘
-
-       0 → remain in the same state
-```
-
-Here, `q0` can represent an even number of `1`s, while `q1` represents an odd number of `1`s. Whenever the machine receives `1`, it changes its state. When it receives `0`, it remains in the same state.
-
----
-
-## Types of Finite Automata
-
-There are mainly two commonly studied types of finite automata:
-
-### 1. Deterministic Finite Automaton (DFA)
-
-In a **DFA**, for every state and input symbol, there is exactly one possible next state.
+- **V** represents the set of vertices.
+- **E** represents the set of edges.
 
 For example:
 
 ```text
-State     Input 0     Input 1
-q0        q0          q1
-q1        q1          q0
+       A
+      / \
+     /   \
+    B-----C
+     \     \
+      \     \
+       D-----E
 ```
 
-This makes DFA predictable because there is only one possible path for a particular input.
+In this example, `A, B, C, D, and E` are vertices, while the lines connecting them are edges.
 
-### 2. Non-Deterministic Finite Automaton (NFA)
-
-In an **NFA**, a state can have multiple possible transitions for the same input. It may also contain transitions that occur without consuming an input symbol.
-
-Although DFA and NFA work differently, they are equivalent in terms of the languages they can recognize. An NFA can be converted into an equivalent DFA.
+Graphs allow us to represent relationships in a visual and mathematical way.
 
 ---
 
-## Finite Automata in Compiler Design
+## Basic Components of Graph Theory
 
-One of the most important applications of Finite Automata is in **Compiler Design**.
+### 1. Vertex
 
-A compiler converts a program written in a high-level programming language into machine-level instructions. Before a compiler can understand a program, it needs to identify different elements such as keywords, identifiers, numbers, and operators.
+A **vertex**, also called a node, represents an individual object in a graph.
 
-This process is called **Lexical Analysis**.
-
-For example, consider the following statement:
+For example, in a computer network, each computer can be represented as a vertex.
 
 ```text
-int age = 19;
+Computer A ●
+Computer B ●
+Computer C ●
 ```
 
-A lexical analyzer can identify:
+### 2. Edge
 
-```text
-int     → Keyword
-age     → Identifier
-=       → Operator
-19      → Number
-;       → Separator
-```
-
-Finite Automata can be used to recognize these tokens. Regular expressions are converted into finite automata, which then scan the source code and identify valid patterns.
-
-Therefore, Finite Automata plays an important role in the first stage of many compiler systems.
-
----
-
-## Real-Life Applications
-
-Finite Automata is not limited to theoretical computer science. It is used in many practical systems.
-
-### 1. Text Searching
-
-Search engines and text editors need to find patterns inside large amounts of text. Automata-based techniques can efficiently recognize specific patterns.
-
-For example, when searching for:
-
-```text
-computer
-```
-
-the system checks whether the sequence of characters occurs in the given text.
-
-### 2. Regular Expression Matching
-
-Regular expressions are widely used for pattern matching. They are used for:
-
-- Email validation
-- Password validation
-- Phone number validation
-- Finding specific text patterns
-- Input validation in websites
-
-For example, a website may use a regular expression to check whether an entered email follows a valid format.
-
-Finite Automata provides the theoretical foundation behind regular expression matching.
-
-### 3. Traffic Light Systems
-
-A traffic light can also be represented using states.
-
-```text
-       ┌─────────┐
-       │  GREEN  │
-       └────┬────┘
-            ↓
-       ┌─────────┐
-       │ YELLOW  │
-       └────┬────┘
-            ↓
-       ┌─────────┐
-       │   RED   │
-       └────┬────┘
-            ↓
-          GREEN
-```
-
-Each light represents a state, and after a specific time or event, the system transitions to another state.
-
-This demonstrates how state-based models can be used to design real-world control systems.
-
-### 4. Vending Machines
-
-A vending machine can also be modeled using finite states.
+An **edge** represents a connection between two vertices.
 
 For example:
 
 ```text
-Waiting
-   ↓
-Coin Inserted
-   ↓
-Product Selected
-   ↓
-Payment Verified
-   ↓
-Product Dispensed
+A -------- B
 ```
 
-The machine changes its state depending on the user's actions, such as inserting money or selecting a product.
+Here, the edge represents a connection between vertices A and B.
+
+### 3. Degree
+
+The **degree of a vertex** is the number of edges connected to that vertex.
+
+For example:
+
+```text
+       B
+       |
+       |
+A -----C----- D
+```
+
+The degree of vertex `C` is 3 because three edges are connected to it.
+
+---
+
+## Types of Graphs
+
+There are different types of graphs used for different purposes.
+
+### Undirected Graph
+
+In an undirected graph, the edges do not have a specific direction.
+
+```text
+A -------- B
+```
+
+This means that the connection between A and B works in both directions.
+
+An example is a friendship network where two people are connected to each other.
+
+### Directed Graph
+
+In a directed graph, edges have a specific direction.
+
+```text
+A -------> B
+```
+
+The arrow indicates that the relationship moves from A to B.
+
+Directed graphs can be used to represent things such as social media followers, where one person can follow another without the relationship necessarily being mutual.
+
+### Weighted Graph
+
+In a weighted graph, each edge has a value or weight associated with it.
+
+```text
+A ----5---- B
+```
+
+The value `5` could represent distance, cost, time, or another measurement.
+
+Weighted graphs are particularly useful in navigation and transportation systems.
+
+---
+
+## Graph Representation
+
+Graphs can be represented in computer programs in different ways. Two common methods are **adjacency matrices** and **adjacency lists**.
+
+### Adjacency Matrix
+
+An adjacency matrix uses a table to represent connections between vertices.
+
+For example:
+
+```text
+     A  B  C
+A    0  1  1
+B    1  0  1
+C    1  1  0
+```
+
+A value of `1` indicates that two vertices are connected, while `0` indicates that there is no direct connection.
+
+### Adjacency List
+
+An adjacency list stores the connected vertices for each vertex.
+
+```text
+A → B, C
+B → A, C
+C → A, B
+```
+
+Adjacency lists can be more memory-efficient for graphs that contain relatively few connections.
+
+---
+
+## Real-Life Applications of Graph Theory
+
+Graph Theory has many practical applications in computer science and everyday technology.
+
+### 1. Computer Networks
+
+Computer networks can be represented using graphs. Computers, servers, and routers can be represented as vertices, while network connections can be represented as edges.
+
+This allows network engineers to analyze connections and determine efficient routes for transferring data.
+
+### 2. Google Maps and GPS
+
+Navigation systems use graph-based concepts to represent roads and locations.
+
+For example:
+
+```text
+Mumbai ---- Navi Mumbai ---- Panvel
+   \             |
+    \            |
+     ---- Thane --
+```
+
+Locations can be represented as vertices, while roads can be represented as edges. Distances or travel times can be assigned as weights.
+
+Algorithms can then be used to find efficient routes between locations.
+
+### 3. Social Networks
+
+Social media platforms can also be represented using graphs.
+
+For example:
+
+```text
+       Alice
+       /   \
+      /     \
+   Bob ----- Charlie
+```
+
+Each person can be represented by a vertex, while friendships or follows can be represented by edges.
+
+This type of graph can help systems analyze relationships and recommend new connections.
+
+### 4. Internet Routing
+
+The Internet consists of a large number of interconnected devices and networks. Graph Theory can be used to represent these connections and determine suitable paths for data packets.
+
+Routing algorithms help data travel from one computer to another through a network.
+
+### 5. Cybersecurity
+
+Graph Theory is also useful in cybersecurity. Networks can be modeled as graphs to identify suspicious connections, analyze attack paths, and understand how an attacker might move through a network.
+
+This makes Graph Theory particularly useful for analyzing complex relationships between systems and devices.
 
 ---
 
 ## Importance in Computer Science
 
-Finite Automata is important because it teaches us how to represent and analyze systems using **states, inputs, and transitions**.
+Graph Theory is important because it provides a structured way to represent relationships and connections. Many computer science problems can be converted into graph problems, allowing algorithms to solve them efficiently.
 
-It forms the foundation for several important areas, including:
+Some important areas where Graph Theory is used include:
 
-- Automata Theory
-- Compiler Design
-- Formal Languages
-- Pattern Matching
-- Regular Expressions
-- Text Processing
-- Software Verification
-- Digital Circuit Design
-- Natural Language Processing
+- Computer Networks
+- Cybersecurity
+- Artificial Intelligence
+- Social Network Analysis
+- Database Systems
+- GPS and Navigation
+- Internet Routing
+- Operating Systems
+- Software Engineering
 
-Learning Finite Automata also improves problem-solving skills because complex processes can be divided into smaller states and transitions.
+Algorithms such as **Breadth-First Search (BFS)**, **Depth-First Search (DFS)**, and shortest-path algorithms are built around graph concepts.
 
 ---
 
 ## Conclusion
 
-Finite Automata is a simple but powerful model of computation. It represents systems using a finite number of states and predefined transitions. Even though it is a theoretical concept, it has many practical applications in modern computing.
+Graph Theory is a fundamental topic in Discrete Structures that has significant applications in computer science. By representing objects as vertices and their relationships as edges, complex systems can be modeled in a simple and understandable way.
 
-From **compiler lexical analysis and regular expressions to vending machines and traffic light systems**, finite automata helps computers recognize patterns and make decisions efficiently.
+From **computer networks and GPS navigation to social media and cybersecurity**, graphs are used to analyze connections and solve real-world problems. Learning Graph Theory also provides a foundation for understanding important algorithms such as BFS, DFS, and shortest-path algorithms.
 
-Understanding Finite Automata provides a strong foundation for students studying **Automata Theory, Discrete Structures, Compiler Design, and Cybersecurity**. It also demonstrates an important principle of computer science: a complex system can often be understood by breaking it down into smaller states, inputs, and transitions.
+Overall, Graph Theory demonstrates how mathematical concepts from Discrete Structures can be directly applied to modern technology. Understanding this topic is therefore valuable for students and professionals who want to build a strong foundation in computer science.
 
 ---
 
 ## References
 
-1. Saylor Academy – CS202: Computer Architecture  
+1. **Saylor Academy – CS202: Discrete Structures**  
    https://learn.saylor.org/course/cs202
 
-2. Hopcroft, J. E., Motwani, R., & Ullman, J. D. – *Introduction to Automata Theory, Languages, and Computation.*
+2. Kenneth H. Rosen – *Discrete Mathematics and Its Applications*
 
-3. Michael Sipser – *Introduction to the Theory of Computation.*
+3. Thomas H. Cormen et al. – *Introduction to Algorithms*
 
 ---
 
@@ -220,5 +264,5 @@ Understanding Finite Automata provides a strong foundation for students studying
 
 **Name:** Neel Barola  
 **Course:** B.Tech – Cyber Security  
-**Topic:** Automata Theory / Finite Automata  
-**Activity:** Self-Learning Activity – Stage 1
+**Subject:** Discrete Structures  
+**Self-Learning Topic:** Graph Theory and Its Applications in Computer Science
